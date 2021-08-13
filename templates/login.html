@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登陆/注册</title>
+    <link rel="stylesheet" type='text/css' href='{{url_for("static",filename="css/reset1.css")}}'>
+    <link rel="stylesheet" href="{{url_for('static',filename='./fontawesome-free-5.15.3-web/css/all.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./fontawesome-free-5.15.3-web/css/solid.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body {
+            font-family: "PingFang SC", "SF Pro Display", "Microsoft YaHei", Roboto, Noto, Arial, sans-serif;
+            background-color: #FFFFFF;
+        }
+
+        .topnav {
+            width: 1256px;
+            height: 48px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        #icon {
+            height: 120px;
+            position: absolute;
+
+        }
+
+        .logo {
+            float: left;
+            width: 80px;
+            height: 48px;
+            margin-right: 10px;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 48px;
+        }
+
+        .topnav ul {
+            width: 412px;
+            height: 48px;
+            float: left;
+            margin-left: 90px;
+        }
+
+        .nav a {
+            float: left;
+            display: block;
+            font-size: 14px;
+            color: #222226;
+            line-height: 48px;
+            padding: 0 10px;
+        }
+
+        .nav a:hover {
+            background-color: #F0F0F5;
+        }
+
+        .searchbar {
+            float: left;
+            /* width: 310px;
+            height: 48px; */
+            padding: 0 40px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .searchbar input {
+            font-size: 14px;
+            width: 256px;
+            height: 30px;
+            background-color: #f5f6f7;
+            color: #222226;
+            border: 1px solid #e8e8ed;
+            border-radius: 4px 0 0 4px;
+            float: left;
+            margin: 8px 0;
+            /* padding: 5px 0; */
+
+        }
+
+        .searchbar button {
+            width: 40px;
+            height: 32px;
+            border: 0 none;
+            border-radius: 0 4px 4px 0;
+            transition: all .2s ease-in;
+            background-color: #F54A4A;
+            float: left;
+            padding: 5px 0;
+            color: #FFFFFF;
+            margin: 8px 0;
+
+        }
+
+        .searchbar button:hover {
+            background-color: #FC1944;
+        }
+
+        .nav1 a {
+
+            height: 48px;
+            line-height: 48px;
+            color: #222226;
+            font-size: 14px;
+            padding: 0 8px;
+            float: left;
+        }
+
+        .nav1 a:hover {
+            background-color: #F0F0F5;
+        }
+
+        #chuangzuo {
+            box-sizing: border-box;
+            position: relative;
+            padding-left: 8px;
+            float: left;
+            height: 32px;
+            line-height: 32px;
+            margin: 8px 0;
+            width: 96px;
+            background-color: #F54A4A;
+            border-radius: 4px;
+        }
+
+        #chuangzuo a {
+            font-size: 14px;
+            color: #FFFFFF;
+            /* text-align: center; */
+        }
+
+        .chuangzuo a:hover {
+            background-color: #FC1944;
+        }
+
+        #erweima {
+            display: none;
+            width: 96px;
+            height: 96px;
+            /* margin: 8px 0px 8px 0px; */
+            position: absolute;
+            top: 48px;
+            right: 1px;
+            background-color: #FFFFFF;
+            padding: 8px 4px;
+            z-index: 200;
+        }
+
+        .main {
+            width: 1211px;
+            height: 600px;
+            position: relative;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .main img {
+            width: 1300px;
+            overflow: visible;
+            height: 600px;
+            float: left;
+            position: absolute;
+            background-color: #FFFFFF;
+            z-index: 1;
+        }
+
+        #main {
+            width: 790px;
+            height: 500px;
+            float: left;
+        }
+
+        .content {
+            width: 260px;
+            height: 420px;
+            padding: 40px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, .4);
+            float: left;
+            position: absolute;
+            left: 210.5px;
+            z-index: 100;
+            margin: 50px 0;
+        }
+
+        .login {
+            float: left;
+            width: 448px;
+            height: 438px;
+            padding: 30px 0;
+            background-color: #FFFFFF;
+            border: 1px solid #fff;
+            position: absolute;
+            left: 550.5px;
+            margin: 50px 0;
+            z-index: 100;
+        }
+
+        #h {
+            margin: 37.5px 0 24px 0;
+            line-height: 34px;
+            font-size: 28px;
+            color: #FFFFFF;
+            font-weight: 400;
+        }
+
+        .content p {
+            color: #FFFFFF;
+            line-height: 34px;
+            height: 272px;
+            display: -webkit-box;
+            -webkit-line-clamp: 8;
+            overflow: hidden;
+        }
+
+        .content span {
+            position: absolute;
+            z-index: 100;
+            height: 40px;
+            padding: 0 10px;
+            line-height: 40px;
+            min-width: 120px;
+            color: #fc5531;
+            text-align: center;
+            border-radius: 24px 24px;
+            border: 1px solid #fc5531;
+            left: 40px;
+            bottom: 40px;
+            cursor: pointer;
+            /* -webkit-user-select: none; */
+        }
+
+        .loginhead {
+            width: 254px;
+            height: 35px;
+            margin: 44px auto 0;
+            box-sizing: border-box;
+            padding: 0 5px;
+        }
+
+        .headmain a {
+            float: left;
+            width: 84px;
+            height: 21px;
+            padding: 0 15px;
+            /* border: none; */
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            font-size: 14px;
+            color: rgb(77, 77, 77);
+            line-height: 21px;
+            border-bottom-color: #F5F5F5;
+            /* display: block; */
+        }
+
+        /* .account {
+            border-bottom-color: #fc5531;
+        }
+
+        .phone {
+            border-bottom-color: #F5F5F5;
+        } */
+
+        .pwd {
+            margin: 0 97px;
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+        }
+
+        .shouji {
+            margin: 0 97px;
+            box-sizing: border-box;
+            display: none;
+        }
+
+        .pwd input {
+            width: 254px;
+            height: 32px;
+            margin-top: 16px;
+            font-size: 14px;
+            color: inherit;
+            border-radius: 4px;
+            border-top: 1px solid rgba(200, 200, 200, 0.25);
+            border-right: 1px solid rgba(200, 200, 200, 0.5);
+            border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+            border-left: 1px solid rgba(200, 200, 200, 0.25);
+            -webkit-nbsp-mode: space;
+            line-break: after-white-space;
+            -webkit-user-modify: read-write-plaintext-only;
+        }
+
+        .phonenum {
+            margin-top: 16px;
+            width: 269px;
+            height: 32px;
+        }
+
+        .yanzhengma {
+            width: 260px;
+            height: 32px;
+            margin-top: 16px;
+        }
+
+        .shouji span,
+        .phonenum input,
+        .yanzhengma {
+            /* height: 14px; */
+            font-size: 14px;
+            border-radius: 4px;
+            border-top: 1px solid rgba(200, 200, 200, 0.25);
+            border-right: 1px solid rgba(200, 200, 200, 0.5);
+            border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+            border-left: 1px solid rgba(200, 200, 200, 0.25);
+        }
+
+        .shouji span {
+            height: 30px;
+            width: 75px;
+            padding-right: 8px;
+            /* position: absolute; */
+            float: left;
+            color: rgb(77, 77, 77);
+            line-height: 30px;
+        }
+
+        .phonenum input {
+            width: 136px;
+            /* position: absolute; */
+            float: left;
+            margin-left: 16px;
+            padding: 8px 16px 8px 8px;
+            color: inherit;
+        }
+
+        .yanzhengma input {
+            color: inherit;
+            width: 158px;
+            border: none;
+            float: left;
+            padding: 8px 0 8px 8px;
+        }
+
+        .yanzhengma a {
+            color: blue;
+            width: 70px;
+            height: 32px;
+            line-height: 32px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .pwd span {
+            display: block;
+            margin-left: 198px;
+            padding-top: 16px;
+            font-size: 14px;
+            color: rgb(77, 77, 77);
+            height: 14px;
+            width: 56px;
+        }
+
+        .pwd a {
+            display: block;
+            margin-top: 32px;
+            width: 228px;
+            height: 19px;
+            padding: 8px 12px;
+            border: 1px solid rgba(0, 0, 0, 0);
+            border-radius: 4px;
+            font-size: 14px;
+            color: rgb(77, 77, 77);
+            text-align: center;
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+
+        #login {
+            display: block;
+            margin-top: 32px;
+            width: 228px;
+            height: 19px;
+            padding: 8px 12px;
+            border: 1px solid rgba(0, 0, 0, 0);
+            border-radius: 4px;
+            font-size: 14px;
+            color: rgb(77, 77, 77);
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav">
+        <div id="icon">
+            <p class="logo"><img title='csdn首页' src="{{url_for('static',filename='img/1.png')}}"></p>
+            <img id="erweima" src="{{url_for('static',filename='img/2.png')}}">
+        </div>
+        <ul>
+            <li class="nav"><a href="#">首页</a></li>
+            <li class="nav"><a href="#">博客</a></li>
+            <li class="nav"><a href="#">专栏课程</a></li>
+            <li class="nav"><a href="#">下载</a></li>
+            <li class="nav"><a href="#">问答</a></li>
+            <li class="nav"><a href="#">社区</a></li>
+            <li class="nav"><a href="#">插件</a></li>
+            <li class="nav"><a href="#">认证</a></li>
+        </ul>
+        <div class="searchbar">
+            <input type="text" placeholder=" python入门" name="" id="" value="" />
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav1">
+            <a href="#">登陆/注册</a>
+            <a href="#">会员中心</a>
+            <a href="#">收藏</a>
+            <a href="#">消息</a>
+        </div>
+        <div id="chuangzuo">
+            <a href="#"><i class="fas fa-feather-alt"> 创作中心</i></a>
+        </div>
+    </div>
+
+    <script>
+        let a = document.getElementById("icon");
+        let c = document.getElementById('erweima')
+        a.onmouseover = function () {
+            c.style.display = 'block';
+        }
+        a.onmouseleave = function () {
+            c.style.display = 'none';
+        }
+    </script>
+    <div class="main">
+        <img src="{{url_for('static',filename='img/3.jpg')}}">
+        <div id="main">
+            <div class="content">
+                <h4 id="h">“云计算”首次现身</h4>
+                <p>"2006 年 8 月 9 日，埃里克·施密特正式提出云计算的概念。谷歌首席执行官施密特在搜索引擎大会（SES San Jose 2006）第一次正式提出“云计算”的概念。“云计算”首次现身已知最早使用
+                    cloud computing 一词的印刷物是 1996 年康柏公司的一份商业计划书。"</p>
+                <span id="like" v-model="message"><i @click="plus" class="fas fa-thumbs-up"></i> {{message}}</span>
+            </div>
+            <script>
+                let b = new Vue({
+                    el: "#like",
+                    data: {
+                        message: 1
+                    },
+                    methods: {
+                        plus() {
+                            this.message += 1
+                        }
+                    }
+                })
+            </script>
+            <div class="login">
+                <div class="loginhead">
+                    <div class="headmain">
+                        <a class="account" :style='underlinecolor' @click='zhanghao' role="button">账号密码登陆</a>
+                        <a class="phone" :style='underlinecolor1' @click='phonenums' role='button'>手机免密登陆</a>
+                    </div>
+                </div>
+                <div class="pwd" :style='display1'>
+                    <form method="get" action='/login'>
+                        <input type="text" name='user' placeholder="  手机号/邮箱/用户名" value="">
+                        <input type="text" name='pwd' placeholder="  密码" value="">
+                        <span>忘记密码</span>
+                        <a type='submit' role="button">登陆</a>
+                    </form>
+                    {% if login %}
+                    <h3>{{ login }}</h3>
+                    {% endif %}
+                </div>
+                <div class="shouji" :style='display2'>
+                    <div class="phonenum">
+                        <span>+ 86</span>
+                        <input type="text" placeholder="  手机号" value="">
+                    </div>
+                    <div class="yanzhengma">
+                        <input type="text" placeholder="  6位数字验证码" value="">
+                        <a role="button">获取验证码</a>
+                    </div>
+                    <a id="login" role="button">登录/注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let login = new Vue({
+            el: '.login',
+            data: {
+                display1: { display: 'block' },
+                display2: { display: 'none' },
+                underlinecolor: { borderBottomColor: '#F5F5F5' },
+                underlinecolor1: { borderBottomColor: '#F5F5F5' },
+            },
+            methods: {
+                zhanghao() {
+                    this.display1.display = 'block';
+                    this.display2.display = 'none';
+                    this.underlinecolor.borderBottomColor = '#fc5531';
+                    this.underlinecolor1.borderBottomColor = '#F5F5F5';
+                },
+                phonenums() {
+                    this.display1.display = 'none';
+                    this.display2.display = 'block';
+                    this.underlinecolor1.borderBottomColor = '#fc5531';
+                    this.underlinecolor.borderBottomColor = '#F5F5F5';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

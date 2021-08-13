@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type='text/css' href='{{url_for("static",filename="css/reset1.css")}}'>
+    <link rel="stylesheet" href="{{url_for('static',filename='./fontawesome-free-5.15.3-web/css/all.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./fontawesome-free-5.15.3-web/css/solid.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>个人中心</title>
+    <style>
+               body {
+            font-family: "PingFang SC", "SF Pro Display", "Microsoft YaHei", Roboto, Noto, Arial, sans-serif;
+            background-color: #F6F6F6;
+        }
+
+        .topnav {
+            width: 1300px;
+            height: 48px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        #icon {
+            height: 120px;
+            position: absolute;
+
+        }
+
+        .logo {
+            float: left;
+            width: 80px;
+            height: 48px;
+            margin-right: 10px;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 48px;
+        }
+
+        .topnav ul {
+            width: 412px;
+            height: 48px;
+            float: left;
+            margin-left: 90px;
+        }
+
+        .nav a {
+            float: left;
+            display: block;
+            font-size: 14px;
+            color: #222226;
+            line-height: 48px;
+            padding: 0 10px;
+        }
+
+        .nav a:hover {
+            background-color: #F0F0F5;
+        }
+
+        .searchbar {
+            float: left;
+            /* width: 310px;
+            height: 48px; */
+            padding: 0 40px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .searchbar input {
+            font-size: 14px;
+            width: 256px;
+            height: 30px;
+            background-color: #f5f6f7;
+            color: #222226;
+            border: 1px solid #e8e8ed;
+            border-radius: 4px 0 0 4px;
+            float: left;
+            margin: 8px 0;
+            /* padding: 5px 0; */
+
+        }
+
+        .searchbar button {
+            width: 40px;
+            height: 32px;
+            border: 0 none;
+            border-radius: 0 4px 4px 0;
+            transition: all .2s ease-in;
+            background-color: #F54A4A;
+            float: left;
+            padding: 5px 0;
+            color: #FFFFFF;
+            margin: 8px 0;
+
+        }
+
+        .searchbar button:hover {
+            background-color: #FC1944;
+        }
+
+        #geren {
+            height: 120px;
+            float: left;
+            /* position: absolute; */
+        }
+
+        .nav1 a {
+
+            height: 48px;
+            line-height: 48px;
+            color: #222226;
+            font-size: 14px;
+            padding: 0 8px;
+            float: left;
+        }
+
+        #setting {
+            display: none;
+            float: left;
+            position: absolute;
+            z-index: 999;
+            top: 48px;
+            left: 905px;
+            margin: 8px 0px 8px 0px;
+            background-color: #FFFFFF;
+        }
+
+        #private {
+            color: salmon;
+            font-size: 16px;
+        }
+
+        #setting a {
+            width: 216px;
+            height: 40px;
+            padding: 0 16px;
+            font-size: 14px;
+            line-height: 40px;
+            color: #222226;
+        }
+
+        #setting a:hover {
+            background-color: #F0F0F5;
+        }
+
+        .qita:hover {
+            background-color: #F0F0F5;
+        }
+
+        #chuangzuo {
+            box-sizing: border-box;
+            position: relative;
+            padding-left: 8px;
+            float: left;
+            height: 32px;
+            line-height: 32px;
+            margin: 8px 0;
+            width: 96px;
+            background-color: #F54A4A;
+            border-radius: 4px;
+        }
+
+        #chuangzuo a {
+            font-size: 14px;
+            color: #FFFFFF;
+            /* text-align: center; */
+        }
+
+        .chuangzuo a:hover {
+            background-color: #FC1944;
+        }
+
+        #erweima {
+            display: none;
+            width: 96px;
+            height: 96px;
+            margin: 8px 0px 8px 0px;
+            position: absolute;
+            top: 48px;
+            right: 1px;
+            background-color: #FFFFFF;
+            padding: 0 4px;
+            z-index: 999;
+        }
+        #bbox{
+            margin-top: 30px;
+            width: 1380px;
+            height: 1500px;
+        }
+        .bigbox{
+            width: 1380px;
+            height: 230px;
+        }
+        .sidebox{
+            float: left;
+            width: 300px;
+            height: 200px;
+            padding-top: 30px;
+            background-color: #FFFFFF;
+            margin-right: 40px;
+            position: absolute;
+            z-index: 5;
+        }
+        .sidebox a{
+            display: block;
+            width: 300px;
+            height: 60px;
+            font-size: 20px;
+            color: #333333;
+            line-height: 60px;
+            text-align: center;
+            margin-bottom: 25px;
+            cursor:pointer;
+        }
+        .personid{
+            background-color: #F0F0F5;
+        }
+        .sidebox a:hover{
+            background-color: #F0F0F5;
+        }
+        .userbox{
+            height: 150px;
+            width: 900px;
+            background-color: #FFFFFF;
+            padding: 40px;
+            float: left;
+            position: absolute;
+            left: 340px;
+            z-index: 5;
+        }
+        .userbox h2{
+            color: coral;
+            height: 100px;
+            width: 100%;
+            line-height: 100px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .mainbox{
+            width: 1340px;
+            margin-top: 30px;
+            height: 1200px;
+            background-color: #FFFFFF;
+        }
+        .information{
+            float: left;
+            margin: 30px;
+            display: block;
+        }
+        .information p{
+            margin-left: 40px;
+            width: 1000px;
+            height: 100px;
+            margin-bottom: 20px;
+            background-color: #F0F0F5;
+        }
+        .information span{
+            font-size: 20px;
+            height: 100px;
+            line-height: 100px;
+            color: #2B2B2F;
+            font-weight: bold;
+        }
+        .id{
+            padding-left: 50px;
+            width: 300px;
+            margin-right: 200px;
+        }
+        .information a{
+            display: block;
+            margin-left: 40px;
+            box-sizing: border-box;
+            width: 1000px;
+            height: 100px;
+            cursor: pointer;
+            color: #2B2B2F;
+            font-size: 20px;
+            line-height: 100px;
+            text-align: center;
+            font-weight: bold;
+            background-color: #F0F0F5;
+        }
+        .information a:hover{
+            background-color: #FFDDD7;
+        color:#FC5530;
+        }
+        .articles{
+            display: none;
+            width: 1300px;
+            height: 800px;
+            background-color: #FFFFFF;
+            float: left;
+            margin: 30px;
+        }
+        .articles a{
+            display: block;
+            margin-left: 40px;
+            padding-left: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            width: 1000px;
+            height: 50px;
+            line-height: 50px;
+            cursor: pointer;
+            color: #2B2B2F;
+            background-color: #F0F0F5;
+        }
+        .articles a:hover{
+            text-decoration: underline;
+        }
+        .add{
+            margin-top: 40px;
+            width: 1000px;
+            height: 50px;
+            color: #FC5530;
+            text-align: center;
+            font-size: 30px;
+            line-height: 50px;
+            font-weight: bold;
+        }
+        .input1, #post{
+            margin-left: 40px;
+            padding-left: 30px;
+            font-weight: bold;
+            font-size: 20px;
+            width: 1000px;
+            height: 50px;
+            line-height: 50px;
+            color: #2B2B2F;
+            margin-bottom: 30px;
+        }
+        .input2{
+            width: 1040px;
+            height: 600px;
+            overflow: scroll;
+            margin-left: 40px;
+            padding-left: 10px;
+            padding-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 30px;
+        }
+        #post{
+            width: 1050px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav">
+        <div id="icon">
+            <p class="logo"><img title='csdn首页' src="{{url_for('static',filename='img/1.png')}}"></p>
+            <img id="erweima" src="{{url_for('static',filename='img/2.png')}}">
+        </div>
+        <ul>
+            <li class="nav"><a href="#">首页</a></li>
+            <li class="nav"><a href="#">博客</a></li>
+            <li class="nav"><a href="#">专栏课程</a></li>
+            <li class="nav"><a href="#">下载</a></li>
+            <li class="nav"><a href="#">问答</a></li>
+            <li class="nav"><a href="#">社区</a></li>
+            <li class="nav"><a href="#">插件</a></li>
+            <li class="nav"><a href="#">认证</a></li>
+        </ul>
+        <div class="searchbar">
+            <input type="text" placeholder=" python入门" name="" id="" value="" />
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav1">
+            <div id="geren">
+                <a href="#" id='private'>{{username[0]}}</a>
+                <div id='setting'>
+                    <a href="http://127.0.0.1:5000/personalspace">个人中心</a>
+                    <a>内容管理</a>
+                </div>
+            </div>
+            <a href="#" class="qita">会员中心</a>
+            <a href="#" class="qita">收藏</a>
+            <a href="#" class="qita">消息</a>
+        </div>
+        <div id="chuangzuo">
+            <a href="#"><i class="fas fa-feather-alt"> 创作中心</i></a>
+        </div>
+    </div>
+            <script>
+        let a = document.getElementById("icon");
+        let e = document.querySelector('.logo');
+        let c = document.getElementById('erweima')
+        e.onmouseover = function () {
+            c.style.display = 'block';
+        }
+        a.onmouseleave = function () {
+            c.style.display = 'none';
+        }
+        let b = document.getElementById("geren");
+        let f = document.getElementById('private');
+        let d = document.getElementById('setting')
+        f.onmouseover = function () {
+            d.style.display = 'block';
+        }
+        b.onmouseleave = function () {
+            d.style.display = 'none';
+        }
+    </script>
+    <div id="bbox">
+        <div class="bigbox">
+            <div class="sidebox">
+                <a role="button" @click="information" @mouseover="light1" @mouseleave="leave1" :style="choice1" class="personid">个人信息</a>
+                <a role="button" @click="article" @mouseover="light2" @mouseleave="leave2" :style="choice2">个人文章</a>
+            </div>
+            <div class="userbox">
+                <h2>{{ username[0] }}的个人中心</h2>
+            </div>
+        </div>
+        <div class = 'mainbox'>
+            <div class="information" :style="block1">
+            <p>
+                <span class="id">您的email:</span>
+                <span>{{ username[2] }}</span>
+            </p>
+            <p>
+                <span class="id">您的电话号码:</span>
+                <span>{{ username[3] }}</span>
+            </p>
+            <a href="http://127.0.0.1:5000/changepwd">修改密码</a>
+        </div>
+            <div class="articles" :style="block2">
+                {% if title == [] %}
+                    <a href="#">空空如也</a>
+                {% else %}
+                    {% for i in range(length) %}
+                        <a href="http://127.0.0.1:5000/static/showarticle/{{ i }}">{{ title[i] }}</a>
+                    {% endfor %}
+                {% endif %}
+                <p class="add">添加新文章</p>
+                <form action="/static/addarticle" method="post" id="addarticle">
+                    <input class="input1" type="text" name='username' placeholder="作者笔名" value="">
+                    <input class="input1" type="text" name='title' placeholder="文章标题" value="">
+                    <textarea class="input2" name="content" cols="40" rows="100" placeholder="文章内容" value=""></textarea>
+                    <input id="post" type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+<script>
+    let lalala = new Vue({
+        el:'#bbox',
+        data:{
+            choice1:{backgroundColor:'#F0F0F5'},
+            choice2:{backgroundColor: '#FFFFFF'},
+            block1:{display:'block'},
+            block2:{display: 'none'}
+        },
+        methods:{
+            article(){
+                this.choice1.backgroundColor='#FFFFFF';
+                this.choice2.backgroundColor='#F0F0F5';
+                this.block1.display = 'none';
+                this.block2.display = 'block'
+            },
+            information(){
+                this.choice2.backgroundColor='#FFFFFF';
+                this.choice1.backgroundColor='#F0F0F5';
+                this.block2.display = 'none';
+                this.block1.display = 'block'
+            },
+            light1(){
+                this.choice1.backgroundColor = '#F0F0F5';
+            },
+            light2(){
+                this.choice2.backgroundColor = '#F0F0F5';
+            },
+            leave1(){
+                this.choice1.backgroundColor = '#FFFFFF';
+            },
+            leave2(){
+                this.choice2.backgroundColor = '#FFFFFF';
+            }
+        }
+    })
+</script>
+</body>
+
+</html>

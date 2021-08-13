@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小米官网</title>
+    <link rel="stylesheet" href='reset1.css'>
+    <link rel="stylesheet" href="./fontawesome-free-5.15.3-web/css/all.css">
+    <link rel="stylesheet" href="./fontawesome-free-5.15.3-web/css/solid.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{
+            font-family:Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
+        }
+        .nav1{
+            width: 1665px;
+            height: 40px;
+            background-color: #333333;
+            position: relative;
+        }
+        .topbarnav{
+            box-sizing: border-box;
+            width:1226px;
+            margin: 0px 219.5px;
+        }
+        .left{
+            float: left;
+            line-height: 40px;
+        }
+        .sep {
+            color: #424242;
+        }
+        .right {
+            float: right;
+            line-height: 40px;
+        }
+        .topbarnav a{
+            text-decoration: none;
+            color: #B0B0B0;
+            font-size: 12.5px;
+            display: inline-block;
+            padding: 0 6px;
+        }
+        .topbarnav a:not(.gouwu):hover{
+            color: #FFFFFF;
+        }
+        .topbarnav .gouwu{
+            padding: 0 30px;
+        }
+        .topbarnav .gouwu:hover {
+            color: #FF6701;
+            background-color:#FFFFFF;
+        }
+        .nav2{
+            position: relative;
+            width: 1665px;
+            height: 100px;
+        }
+        .container{
+            box-sizing: border-box;
+            margin: 0 219.5px;
+            width: 1226px;
+            height: 100px;
+        }
+        .container img{
+            width: 56px;
+            height: 56px;
+            margin-top: 22px;
+            float: left;
+        }
+        .headline{
+            position: relative;
+            float: left;
+            z-index: 1;
+            height: 88px;
+            width: 620px;
+            padding: 12px 0 0 233px;
+            {#margin-left: 178px;#}
+            {#line-height: 76px;#}
+            background-color: yellow;
+        }
+        .headline li{
+            float: left;
+            {#line-height: 88px;#}
+        }
+        .headline a{
+            display: block;
+            padding: 26px 10px 38px;
+            color: #333333;
+            font-size: 16px;
+        }
+        .search{
+            box-sizing: border-box;
+            float: left;
+            margin-left: 90px;
+            padding-top: 22px;
+            border: 1px solid rgba(231,231,231,.2);
+            outline: none;
+            transition: all .2s;
+        }
+        .search input{
+            float: left;
+            width: 223px;
+            height: 48px;
+            outline: none;
+            font-size: 15px;
+            line-height: 24px;
+        }
+        .search button{
+            float: left;
+            width: 52px;
+            height: 52px;
+            font-size: 15px;
+            line-height: 24px;
+            background: #ffffff;
+            color:#616161;
+        }
+        .search button:hover{
+            background: #FF6701;
+            color:#F4F4F4;
+        }
+        .body{
+            margin: 0 219.5px;
+            width: 1226px;
+            height: 460px;
+            background-color:rgba(105,101,101,.6);
+            box-sizing: border-box;
+            position: relative;
+        }
+        .box{
+            position: relative;
+            box-sizing: border-box;
+        }
+        .sidenav{
+            padding-top: 14px;
+            width: 234px;
+            height: 460px;
+            float: left;
+            background-color: rgba(102,101,101,.4);
+            box-sizing: border-box;
+            position: absolute;
+            z-index: 5;
+        }
+        .sidenav a{
+            height:42px;
+            padding-left: 30px;
+            line-height: 42px;
+            display: block;
+            color: #FFFFFF;
+            font-size: 14px;
+            position: relative;
+            z-index: 100;
+        }
+        .sidenav a:hover{
+            background-color: #FF6701;
+        }
+        .sidenav span{
+            float: right;
+            position: relative;
+            right: 15px;
+        }
+        .erji{
+            position: absolute;
+            left: 234px;
+            float: left;
+        }
+        #yc1,#yc2,#yc3,#yc4,#yc5,#yc6,#yc7,#yc8,#yc9,#yc10{
+            display: none;
+            background-color: #FFFFFF;
+            float: left;
+            position: absolute;
+            z-index: 200;
+            width: 992px;
+            height: 460px;
+        }
+        #yc1 ul{
+            position: absolute;
+            float: left;
+            width: 992px;
+            height: 76px;
+        }
+        #li1 a{
+            float: left;
+            width: 210px;
+            height: 76px;
+            color: #333333;
+            font-size: 20px;
+            padding: 20px 19px;
+        }
+
+
+        .scrollimg .images,img{
+            position: absolute;
+            width: 1226px;
+            height: 460px;
+            z-index: 1;
+        }
+        .spot{
+            position: absolute;
+            z-index: 900;
+            top: 440px;
+            right: 20px;
+        }
+        .scrollimg .spot a{
+            display: block;
+            width: 7px;
+            height: 7px;
+            margin-right: 10px;
+            border:#86888D 2px solid ;
+            border-radius: 50%;
+            background-color: #5E646D;
+            float: right;
+        }
+        .scrollimg .spot a:hover{
+            background-color: #F7F7F7;
+        }
+        .foot{
+            width: 1246px;
+            height: 170px;
+            margin: 14px 205.5px;
+            padding-left: 14px;
+
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .sidemenu{
+            width: 234px;
+            height: 170px;
+            float: left;
+            background-color: #5F5750;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .sellingpoints{
+            display: block;
+            height: 170px;
+            float: left;
+            width: 996px;
+        }
+        .block1 li{
+            width: 76px;
+            height: 82px;
+            float: left;
+            border:1px solid #665E57;
+        }
+        .block2 li{
+            top: 82px;
+            width: 76px;
+            height: 82px;
+            float: left;
+            border:1px solid #665E57;
+        }
+
+        .sidemenu a{
+            display: block;
+            padding-top: 18px;
+            color: #CECBC9;
+        }
+        .block1 i{
+            font-size: 24px;
+            padding-left: 26px;
+            color: #BEBBB8;
+            font-weight: 100;
+        }
+        .block1 span:not(.fma){
+            padding-top: 3px;
+            font-size: 13px;
+            padding-left: 12px;
+        }
+        .block2 i{
+            font-size: 24px;
+            padding-left: 26px;
+            color: #BEBBB8;
+            font-weight: 100;
+        }
+        .block2 span:not(.mifan){
+            padding-top: 5px;
+            font-size: 13px;
+            padding-left: 12px;
+        }
+        .mifan{
+            padding-top: 5px;
+            font-size: 13px;
+            padding-left: 18px;
+        }
+        .icons{
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 10px;
+            padding-left: 26px;
+        }
+        .fma{
+            display: block;
+            padding: 8px 0 0 15px;
+            font-size: 13px;
+        }
+
+        .sidemenu i:hover{
+            color: #FFFFFF;
+        }
+        .sellingpoints li{
+            margin-left: 14.6px;
+            float: left;
+            width: 316px;
+            height: 170px;
+        }
+        .sellingpoints a{
+            display: block;
+            float: left;
+        }
+        .points{
+            width: 316px;
+            height: 170px;
+        }
+
+    </style>
+<body>
+<div class="nav1">
+    <div class="topbarnav">
+        <ul>
+            <li class="left"><a href="#">小米商城</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">MIUI</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">loT</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">云服务</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">天星数科</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">有品</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">小爱开放平台</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">企业团购</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">资质证照</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">协议规则</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">下载app</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">智能生活</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="left"><a href="#">Select Location</a></li>
+            <li class="left"><span class="sep">|</span></li>
+            <li class="right gouwuche"><a class="gouwu" href="#">
+                <i class="fas fa-shopping-cart"></i> 购物车</a></li>
+            <li class="right"><a href="#">消息通知</a></li>
+            <li class="right"><span class="sep">|</span></li>
+            <li class="right"><a href="#">注册</a></li>
+            <li class="right"><span class="sep">|</span></li>
+            <li class="right"><a href="#">登录</a></li>
+        </ul>
+    </div>
+</div>
+<div class="nav2">
+    <div class="container">
+        <div class="icon">
+            <img title="小米官网" src="./img/7.webp">
+        </div>
+        <div class="headline">
+            <ul>
+                <li><a href="#">小米手机</a></li>
+                <li><a href="#">Redmi 红米</a></li>
+                <li><a href="#">电视</a></li>
+                <li><a href="#">笔记本</a></li>
+                <li><a href="#">家电</a></li>
+                <li><a href="#">路由器</a></li>
+                <li><a href="#">智能硬件</a></li>
+                <li><a href="#">服务</a></li>
+                <li><a href="#">社区</a></li>
+            </ul>
+        </div>
+        <div class="search">
+            <input type="text" placeholder=" 手机" name="" id="" value="" />
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    <div calss="searchingline"></div>
+</div>
+<div class="body">
+    <div class="box">
+        <div class="sidenav">
+        <ul>
+            <li><a id="in1" href="">手机 电话卡<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in2" href="">电视 盒子<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in3" href="">笔记本 显示器<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in4" href="">家电 插线板<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in5" href="">出行 穿戴<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in6" href="">智能 路由器<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in7" href="">电源 配件<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in8" href="">健康 儿童<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in9" href="">耳机 音箱<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a id="in10" href="">生活 箱包<span><i class="fas fa-chevron-right"></i></span></a></li>
+        </ul>
+    </div>
+        <div class="erji">
+                <div id="yc1">
+                    <ul id="li1">
+                        <li><a href="#">xiaomi10</a></li>
+                        <li><a href="#">xiaomi12</a></li>
+                        <li><a href="#">xiaomi13</a></li>
+                        <li><a href="#">xiaomi14</a></li>
+                    </ul>
+                    <script>
+                        let c = document.querySelectorAll('#li1 a')
+                        c.onmouseover = function (){
+                            c.style.color = '#FF6B03';
+                        }
+                    </script>
+                    <ul id="li2">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul id="li3">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul id="li4">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul id="li5">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul id="li6">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div id="yc2"></div>
+                <div id="yc3"></div>
+                <div id="yc4"></div>
+                <div id="yc5"></div>
+                <div id="yc6"></div>
+                <div id="yc7"></div>
+                <div id="yc8"></div>
+                <div id="yc9"></div>
+                <div id="yc10"></div>
+        </div>
+    </div>
+    <script>
+        let a = document.getElementById("yc1");
+        let b = document.getElementById("in1");
+        b.onmouseover=function (){
+            a.style.display='block';
+        }
+        a.onmouseleave =function (){
+               a.style.display = 'none';
+        }
+
+    </script>
+    <div class="scrollimg">
+        <ul class="images">
+            <li><a href="#" ><img :src="location[id]"></a></li>
+        </ul>
+        <div class="spot">
+            <a class="obj3" :style="styobj3" @click="change"  role="button"></a>
+            <a class="obj2" :style="styobj2" @click="change1" role="button"></a>
+            <a class="obj1" :style="styobj1" @click="change2" role="button"></a>
+        </div>
+        <div>{{ message }}</div>
+    </div>
+</div>
+<script>
+            let roll = new Vue({
+                el: ".scrollimg",
+                data: {
+                    id: 0,
+                    location: ["./img/10.jpg","./img/11.jpg","./img/12.jpg"],
+                    message:null,
+                    styobj1:{backgroundColor:'#5E646D'},
+                    styobj2:{backgroundColor:'#5E646D'},
+                    styobj3:{backgroundColor:'#5E646D'},
+                },
+                mounted() {
+				this.autoPlay();},
+
+                methods: {
+                    setclock(){
+                        if(this.id==0){
+                            this.styobj1.backgroundColor="#F7F7F7";
+                            this.styobj2.backgroundColor="#5E646D";
+                            this.styobj3.backgroundColor="#5E646D";
+                            this.id += 1;
+                        }else if(this.id==1){
+                            this.styobj2.backgroundColor="#F7F7F7";
+                            this.styobj1.backgroundColor="#5E646D";
+                            this.styobj3.backgroundColor="#5E646D";
+                            this.id += 1;
+                        } else{
+                            this.styobj3.backgroundColor="#F7F7F7";
+                            this.styobj2.backgroundColor="#5E646D";
+                            this.styobj1.backgroundColor="#5E646D";
+                            this.id = 0;}
+
+                    },
+                    change:function (){
+                      this.id=0;
+                      clearInterval(this.message);
+                      this.message = setInterval(() => {
+
+                        function target(that){
+                        return target}}, 3000)
+                    },
+                    change1:function (){
+                      this.id=2;
+                      clearInterval(this.message);
+                      this.message = setInterval((function target () {
+                        console.log('Do something...')
+                        return target})(), 3000)
+                    },
+                    change2:function (){
+                      this.id=0;
+                      clearInterval(this.message);
+                      this.message = setInterval((function target () {
+                        console.log('Do something...')
+                        return target})(), 3000)
+                    },
+                    // target(){
+                    //     return target
+                    // },
+                    autoPlay() {
+					this.message = setInterval(() => {
+						this.setclock()
+					}, 3000)
+				}
+                },
+                    })
+        </script>
+<div class="foot">
+    <div class="sidemenu">
+        <div class="block1">
+            <ul>
+                <li><a href="#">
+                    <i class="far fa-clock"></i><br><span>小米秒杀</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="far fa-building"></i><br><span>企业团购</span>
+                </a></li>
+                <li><a href="#">
+                    <img class="icons" src="./img/13.png"><br><span class="fma">F码通道</span>
+                </a></li>
+            </ul>
+        </div>
+        <div class="block2">
+            <ul>
+                <li><a href="#">
+                    <i class="fas fa-sim-card"></i><br><span class="mifan">米粉卡</span>
+                </a></li>
+                <li><a href="#">
+                     <i class="fas fa-yen-sign"></i><br><span>以旧换新</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-mobile"></i><br><span>话费充值</span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sellingpoints">
+        <ul>
+            <li><a href="#"><img class="points" src="./img/18.jpg"></a></li>
+            <li><a href="#"><img class="points" src="./img/19.jpg"></a></li>
+            <li><a href="#"><img class="points" src="./img/20.png"></a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

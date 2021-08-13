@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>csdn</title>
+    <link rel="stylesheet" type='text/css' href='{{url_for("static",filename="css/reset1.css")}}'>
+    <link rel="stylesheet" href="{{url_for('static',filename='./fontawesome-free-5.15.3-web/css/all.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./fontawesome-free-5.15.3-web/css/solid.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body {
+            font-family: "PingFang SC", "SF Pro Display", "Microsoft YaHei", Roboto, Noto, Arial, sans-serif;
+            background-color: #F6F6F6;
+        }
+
+        .topnav {
+            width: 1256px;
+            height: 48px;
+            padding-left: 24px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        #icon {
+            height: 120px;
+            position: absolute;
+
+        }
+
+        .logo {
+            float: left;
+            width: 80px;
+            height: 48px;
+            margin-right: 10px;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 48px;
+        }
+
+        .topnav ul {
+            width: 412px;
+            height: 48px;
+            float: left;
+            margin-left: 90px;
+        }
+
+        .nav a {
+            float: left;
+            display: block;
+            font-size: 14px;
+            color: #222226;
+            line-height: 48px;
+            padding: 0 10px;
+        }
+
+        .nav a:hover {
+            background-color: #F0F0F5;
+        }
+
+        .searchbar {
+            float: left;
+            /* width: 310px;
+            height: 48px; */
+            padding: 0 40px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .searchbar input {
+            font-size: 14px;
+            width: 256px;
+            height: 30px;
+            background-color: #f5f6f7;
+            color: #222226;
+            border: 1px solid #e8e8ed;
+            border-radius: 4px 0 0 4px;
+            float: left;
+            margin: 8px 0;
+            /* padding: 5px 0; */
+
+        }
+
+        .searchbar button {
+            width: 40px;
+            height: 32px;
+            border: 0 none;
+            border-radius: 0 4px 4px 0;
+            transition: all .2s ease-in;
+            background-color: #F54A4A;
+            float: left;
+            padding: 5px 0;
+            color: #FFFFFF;
+            margin: 8px 0;
+
+        }
+
+        .searchbar button:hover {
+            background-color: #FC1944;
+        }
+
+        .nav1 a {
+
+            height: 48px;
+            line-height: 48px;
+            color: #222226;
+            font-size: 14px;
+            padding: 0 8px;
+            float: left;
+        }
+
+        .nav1 a:hover {
+            background-color: #F0F0F5;
+        }
+
+        #chuangzuo {
+            box-sizing: border-box;
+            position: relative;
+            padding-left: 8px;
+            float: left;
+            height: 32px;
+            line-height: 32px;
+            margin: 8px 0;
+            width: 96px;
+            background-color: #F54A4A;
+            border-radius: 4px;
+        }
+
+        #chuangzuo a {
+            font-size: 14px;
+            color: #FFFFFF;
+            /* text-align: center; */
+        }
+
+        .chuangzuo a:hover {
+            background-color: #FC1944;
+        }
+
+        #erweima {
+            display: none;
+            width: 96px;
+            height: 96px;
+            margin: 8px 0px 8px 0px;
+            position: absolute;
+            top: 48px;
+            right: 1px;
+            background-color: #FFFFFF;
+            padding: 0 4px;
+            z-index: 9999;
+        }
+
+        .block3 {
+            box-sizing: border-box;
+            width: 1187px;
+            height: 50px;
+            padding: 0 16px;
+            margin: 10px 62.5px;
+            border-radius: 2px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .nav2 {
+            margin: 13px 0;
+            width: 235px;
+            height: 24px;
+            border-right: 1px solid #E8E8ED;
+            float: left;
+        }
+
+        .nav2 li {
+            float: left;
+            width: 56px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            padding-right: 20px;
+        }
+
+        .nav2 a {
+            color: #2B2B2F;
+        }
+
+        .nav2 a:hover {
+            color: #FC5530;
+        }
+
+        .nav2 i {
+            float: left;
+            display: block;
+            height: 24px;
+            line-height: 24px;
+            font-size: 24px;
+            color: #FF9359;
+        }
+
+        .nav3 {
+            width: 847px;
+            height: 50px;
+            padding: 0 25px;
+            float: left;
+        }
+
+        .nav3 a {
+            color: #2B2B2F;
+        }
+
+        .nav3 a:hover {
+            color: #FC5530;
+        }
+
+        .nav3 li {
+            float: left;
+            font-size: 14px;
+            padding-right: 22px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .guanggaobox {
+            width: 1187px;
+            height: 77px;
+            margin: 0 62.5px 10px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .guanggao {
+            width: 1187px;
+            height: 77px;
+
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .block4 {
+            width: 890px;
+            height: 360px;
+            padding: 16px 24px 24px 24px;
+            border-radius: 2px;
+            background-color: rgb(255, 255, 255);
+            box-sizing: border-box;
+            float: left;
+            margin-left: 62.5px;
+        }
+
+
+        .toutiao {
+            width: 298px;
+            height: 320px;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .toutiao #toutiao {
+            font-size: 18px;
+            color: #222226;
+            margin-bottom: 20px;
+        }
+
+        .toutiao i {
+            width: 24px;
+            height: 24px;
+            color: blue;
+            margin-right: 4px;
+        }
+
+        .apple {
+            width: 298px;
+            height: 166px;
+        }
+
+        .toutiao img {
+            width: 298px;
+            height: 166px;
+            border-radius: 2px;
+        }
+
+        .toutiao #neirong {
+            font-size: 18px;
+            color: #222226;
+            margin-bottom: 10px;
+        }
+
+        .footline {
+
+            width: 298px;
+            height: 20px;
+        }
+
+        .footline a {
+
+            float: left;
+            font-size: 12px;
+
+        }
+
+        .csdn {
+            color: #999AAA;
+            padding-right: 14px;
+            margin-top: 4px;
+            border-right: 1px solid #999AAA;
+            line-height: 12px;
+            height: 12px;
+        }
+
+        .newstype {
+            color: #507999;
+            padding: 0 5px;
+            margin-left: 14px;
+            margin-right: 5px;
+            background-color: #EBF2F7;
+        }
+
+        .hotnews {
+            width: 282px;
+            height: 320px;
+            float: left;
+        }
+
+        .headarrow {
+            width: 70px;
+            height: 24px;
+            padding: 0 25px 0 180px;
+            text-align: center;
+        }
+
+        .headarrow i {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: rgb(242, 242, 242);
+            line-height: 20px;
+            font-weight: 800;
+        }
+
+        .headarrow i:first-child {
+            color: #CFCFDA;
+        }
+
+        .newsreport {
+            width: 210px;
+            height: 276px;
+            padding: 0 32px;
+            border-right: 1px solid #F0F0F0;
+            margin-top: 20px;
+        }
+
+        .newsreport a {
+            display: block;
+            width: 217px;
+            height: auto;
+            margin-bottom: 24px;
+        }
+
+        .con1 {
+            color: rgb(34, 34, 38);
+            font-size: 16px;
+            font-weight: bold;
+            height: 24px;
+            line-height: 24px;
+            width: 217px;
+            display: block;
+        }
+
+        .con2 {
+            color: rgb(34, 34, 38);
+            font-size: 16px;
+            font-weight: bold;
+            height: 48px;
+            line-height: 24px;
+            width: 217px;
+            display: block;
+        }
+
+        .newsreport h4:hover {
+            text-decoration: underline;
+        }
+
+        .newsreport span,
+        .newsreport1 span {
+            display: block;
+            margin-top: 8px;
+            color: rgb(153, 154, 170);
+            font-size: 12px;
+            height: 18px;
+            line-height: 18px;
+        }
+
+        .discuss {
+            width: 260px;
+            height: 320px;
+            float: left;
+        }
+
+        .headarrow1 {
+            padding: 0 20px;
+            margin-bottom: 20px;
+            height: 28px;
+            width: 220px;
+        }
+
+        .headarrow1 i {
+            float: left;
+            color: blue;
+            font-size: 20px;
+            height: 28px;
+            line-height: 28px;
+            margin-right: 5px;
+        }
+
+        .headarrow1 h4 {
+            float: left;
+            font-size: 18px;
+            color: #222226;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        .newsreport1 {
+            width: 220px;
+            height: 256px;
+            padding: 0 20px;
+
+        }
+
+        .newsreport1 a {
+            display: block;
+            width: 220px;
+            height: auto;
+            margin-bottom: 24px;
+        }
+
+        .newsreport1 h4 {
+            color: rgb(34, 34, 38);
+            font-size: 16px;
+            font-weight: bold;
+            height: 24px;
+            line-height: 24px;
+            width: 200px;
+            display: block;
+        }
+
+        .newsreport1 h4:hover {
+            text-decoration: underline;
+        }
+
+        .scrollimg {
+            float: left;
+            position: relative;
+            width: 296px;
+            height: 360px;
+        }
+
+        .scrollimg .images,
+        img {
+            width: 296px;
+            height: 360px;
+            position: absolute;
+            z-index: 10;
+            float: left;
+        }
+
+        .spot {
+            position: absolute;
+            float: left;
+            z-index: 900;
+            top: 340px;
+            left: 80px;
+        }
+
+        .spot a {
+            display: block;
+            width: 18px;
+            height: 3px;
+            margin: 4px;
+            background-color: #5E646D;
+            float: left;
+        }
+
+        .scrollimg .spot a:hover {
+            background-color: #F7F7F7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav">
+        <div id="icon">
+            <p class="logo"><img title='csdn首页' src="{{url_for('static',filename='img/1.png')}}"></p>
+            <img id="erweima" src="{{url_for('static',filename='img/2.png')}}">
+        </div>
+        <ul>
+            <li class="nav"><a href="#">首页</a></li>
+            <li class="nav"><a href="#">博客</a></li>
+            <li class="nav"><a href="#">专栏课程</a></li>
+            <li class="nav"><a href="#">下载</a></li>
+            <li class="nav"><a href="#">问答</a></li>
+            <li class="nav"><a href="#">社区</a></li>
+            <li class="nav"><a href="#">插件</a></li>
+            <li class="nav"><a href="#">认证</a></li>
+        </ul>
+        <div class="searchbar">
+            <input type="text" placeholder=" python入门" name="" id="" value="" />
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav1">
+            <a href="http://127.0.0.1:5000/login">登陆/注册</a>
+            <a href="#">会员中心</a>
+            <a href="#">收藏</a>
+            <a href="#">消息</a>
+        </div>
+        <div id="chuangzuo">
+            <a href="#"><i class="fas fa-feather-alt"> 创作中心</i></a>
+        </div>
+    </div>
+
+    <script>
+        let a = document.getElementById("icon");
+        let e = document.querySelector('.logo');
+        let c = document.getElementById('erweima')
+        e.onmouseover = function () {
+            c.style.display = 'block';
+        }
+        a.onmouseleave = function () {
+            c.style.display = 'none';
+        }
+    </script>
+    <div class="block3">
+        <ul class="nav2">
+            <li><a href="#"><i class="fab fa-youtube"></i>直播</a></li>
+            <li><a href="#"><i class="fas fa-globe"></i>动态</a></li>
+            <li><a href="#"><i class="fas fa-medal"></i>排行</a></li>
+        </ul>
+        <ul class="nav3">
+            <li><a href="#">Python</a></li>
+            <li><a href="#">Java</a></li>
+            <li><a href="#">前端</a></li>
+            <li><a href="#">开源</a></li>
+            <li><a href="#">计算机基础</a></li>
+            <li><a href="#">程序人生</a></li>
+            <li><a href="#">云计算</a></li>
+            <li><a href="#">数据库</a></li>
+            <li><a href="#">信息安全</a></li>
+            <li><a href="#">区块链</a></li>
+            <li><a href="#">架构</a></li>
+            <li><a href="#">人工智能</a></li>
+        </ul>
+    </div>
+    <div class="guanggaobox">
+        <img src="{{url_for('static',filename='img/4.png')}}" alt="" class="guanggao">
+    </div>
+    <div class="block4">
+        <div class="toutiao">
+            <h3 id="toutiao"><i class="far fa-file-alt"></i>头条</h3>
+            <div class="apple">
+                <img src="{{url_for('static',filename='img/5.png')}}">
+            </div>
+            <a
+                href="https://blog.csdn.net/itcastedu/article/details/119582779?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162866095616780255290420%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=162866095616780255290420&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-1-119582779.first_rank_v2_pc_rank_v29&utm_term=%E8%8B%B9%E6%9E%9C%E6%96%B0%E5%8A%9F%E8%83%BD%E6%83%B9%E4%BC%97%E6%80%92+%E7%BD%91%E5%8F%8B&spm=1018.2226.3001.4187">
+                <h3 id="neirong">苹果新功能惹众怒，网友：有何隐私可言</h3>
+            </a>
+            <div class="footline">
+                <a class="csdn">CSDN 咨询</a>
+                <a class="newstype">苹果</a>
+                <a class="newstype">安全</a>
+            </div>
+        </div>
+        <div class="hotnews">
+            <div class="headarrow">
+                <i class="fas fa-chevron-left"></i>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="newsreport">
+                <a href="https://blog.csdn.net/m0_59537084/article/details/119530979?spm=1000.2115.3001.5927">
+                    <h4 class="con1">对10,000小时编程的反思</h4>
+                    <span>写1万小时代码=成为大咖？</span>
+                </a>
+                <a href="https://csdnnews.blog.csdn.net/article/details/119550691?spm=1000.2115.3001.5927">
+                    <h4 class="con2">为什么公司不愿给老程序员加薪？</h4>
+                    <span>干的越久越拿不到高薪？</span>
+                </a>
+                <a href="https://blog.csdn.net/sinat_14921509/article/details/119539464?spm=1000.2115.3001.5927">
+                    <h4 class="con1">Java热度不减，JS稳居榜首</h4>
+                    <span>RedMonk 最新编程语言榜单！</span>
+                </a>
+            </div>
+        </div>
+        <div class="discuss">
+            <div class="headarrow1">
+                <i class="fas fa-id-card"></i>
+                <h4>热点事件讨论</h4>
+            </div>
+            <div class="newsreport1">
+                <a href="https://blog.csdn.net/super111t/article/details/119563826?spm=1000.2115.3001.5928">
+                    <h4 class="">世界第三大浏览器正在消亡</h4>
+                    <span>三年流失近5000万用户</span>
+                </a>
+                <a href="https://blog.csdn.net/vitaviva/article/details/119564334?spm=1000.2115.3001.5928">
+                    <h4 class="">与 Flutter 迟早必有一战？</h4>
+                    <span>Compose Multiplatform 正式官宣</span>
+                </a>
+                <a href="https://blog.csdn.net/m0_59537084/article/details/119562656?spm=1000.2115.3001.5928">
+                    <h4 class="">亚马逊高管为何频繁离职？</h4>
+                    <span>亚马逊“不香了”</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="scrollimg">
+        <ul class="images">
+            <li><a href="#"><img v-show="id == 0" src="{{url_for('static',filename='img/6.png')}}"></a></li>
+            <li><a href="#"><img v-show="id == 1" src="{{url_for('static',filename='img/7.jpg')}}"></a></li>
+            <li><a href="#"><img v-show="id == 2" src="{{url_for('static',filename='img/8.png')}}"></a></li>
+            <li><a href="#"><img v-show="id == 3" src="{{url_for('static',filename='img/9.gif')}}"></a></li>
+            <li><a href="#"><img v-show="id == 4" src="{{url_for('static',filename='img/10.jpg')}}"></a></li>
+        </ul>
+        <div class="spot">
+            <a class="obj5" :style="styobj1" @click="change4" @mouseover='light4' @mouseleave='leave4'
+                role="button"></a>
+            <a class="obj4" :style="styobj2" @click="change3" @mouseover='light3' @mouseleave='leave3'
+                role="button"></a>
+            <a class="obj3" :style="styobj3" @click="change2" @mouseover='light2' @mouseleave='leave2'
+                role="button"></a>
+            <a class="obj2" :style="styobj4" @click="change1" @mouseover='light1' @mouseleave='leave1'
+                role="button"></a>
+            <a class="obj1" :style="styobj5" @click="change" @mouseover='light' @mouseleave='leave' role="button"></a>
+        </div>
+    </div>
+    <script>
+        let roll = new Vue({
+            el: ".scrollimg",
+            data: {
+                id: 0,
+                message: null,
+                styobj1: { backgroundColor: '#5E646D' },
+                styobj2: { backgroundColor: '#5E646D' },
+                styobj3: { backgroundColor: '#5E646D' },
+                styobj4: { backgroundColor: '#5E646D' },
+                styobj5: { backgroundColor: '#5E646D' },
+            },
+            mounted() {
+                this.autoPlay();
+            },
+
+            methods: {
+                setclock() {
+                    if (this.id == 0) {
+                        this.styobj1.backgroundColor = "#F7F7F7";
+                        this.styobj2.backgroundColor = "#5E646D";
+                        this.styobj3.backgroundColor = "#5E646D";
+                        this.styobj4.backgroundColor = "#5E646D";
+                        this.styobj5.backgroundColor = "#5E646D";
+                        this.id += 1;
+                    } else if (this.id == 1) {
+                        this.styobj2.backgroundColor = "#F7F7F7";
+                        this.styobj1.backgroundColor = "#5E646D";
+                        this.styobj3.backgroundColor = "#5E646D";
+                        this.styobj4.backgroundColor = "#5E646D";
+                        this.styobj5.backgroundColor = "#5E646D";
+                        this.id += 1;
+                    } else if (this.id == 2) {
+                        this.styobj3.backgroundColor = "#F7F7F7";
+                        this.styobj1.backgroundColor = "#5E646D";
+                        this.styobj2.backgroundColor = "#5E646D";
+                        this.styobj4.backgroundColor = "#5E646D";
+                        this.styobj5.backgroundColor = "#5E646D";
+                        this.id += 1;
+                    } else if (this.id == 3) {
+                        this.styobj4.backgroundColor = "#F7F7F7";
+                        this.styobj1.backgroundColor = "#5E646D";
+                        this.styobj2.backgroundColor = "#5E646D";
+                        this.styobj3.backgroundColor = "#5E646D";
+                        this.styobj5.backgroundColor = "#5E646D";
+                        this.id += 1;
+
+                    } else {
+                        this.styobj5.backgroundColor = "#F7F7F7";
+                        this.styobj2.backgroundColor = "#5E646D";
+                        this.styobj3.backgroundColor = "#5E646D";
+                        this.styobj4.backgroundColor = "#5E646D";
+                        this.styobj1.backgroundColor = "#5E646D";
+                        this.id = 0;
+                    }
+
+                },
+                change() {
+                    this.id = 0;
+                    this.styobj5.backgroundColor = "#F7F7F7";
+                    this.styobj4.backgroundColor = "#5E646D";
+                    this.styobj3.backgroundColor = "#5E646D";
+                    this.styobj2.backgroundColor = "#5E646D";
+                    this.styobj1.backgroundColor = "#5E646D";
+                    clearInterval(this.message);
+                    this.autoPlay();
+                },
+                change1() {
+                    this.id = 4;
+                    this.styobj4.backgroundColor = "#F7F7F7";
+                    this.styobj2.backgroundColor = "#5E646D";
+                    this.styobj3.backgroundColor = "#5E646D";
+                    this.styobj5.backgroundColor = "#5E646D";
+                    this.styobj1.backgroundColor = "#5E646D";
+                    clearInterval(this.message);
+                    this.autoPlay();
+                },
+                change2() {
+                    this.id = 3;
+                    this.styobj3.backgroundColor = "#F7F7F7";
+                    this.styobj4.backgroundColor = "#5E646D";
+                    this.styobj5.backgroundColor = "#5E646D";
+                    this.styobj2.backgroundColor = "#5E646D";
+                    this.styobj1.backgroundColor = "#5E646D";
+                    clearInterval(this.message);
+                    this.autoPlay();
+                },
+                change3() {
+                    this.id = 2;
+                    this.styobj2.backgroundColor = "#F7F7F7";
+                    this.styobj3.backgroundColor = "#5E646D";
+                    this.styobj5.backgroundColor = "#5E646D";
+                    this.styobj4.backgroundColor = "#5E646D";
+                    this.styobj1.backgroundColor = "#5E646D";
+                    clearInterval(this.message);
+                    this.autoPlay();
+                },
+                change4() {
+                    this.id = 1;
+                    this.styobj1.backgroundColor = "#F7F7F7";
+                    this.styobj3.backgroundColor = "#5E646D";
+                    this.styobj5.backgroundColor = "#5E646D";
+                    this.styobj2.backgroundColor = "#5E646D";
+                    this.styobj4.backgroundColor = "#5E646D";
+                    clearInterval(this.message);
+                    this.autoPlay();
+                },
+                light() {
+                    this.styobj5.backgroundColor = "#F7F7F7";
+                },
+                leave() {
+                    this.styobj5.backgroundColor = "#5E646D";
+                },
+                light1() {
+                    this.styobj4.backgroundColor = "#F7F7F7";
+                },
+                leave1() {
+                    this.styobj4.backgroundColor = "#5E646D";
+                },
+                light2() {
+                    this.styobj3.backgroundColor = "#F7F7F7";
+                },
+                leave2() {
+                    this.styobj3.backgroundColor = "#5E646D";
+                },
+                light3() {
+                    this.styobj2.backgroundColor = "#F7F7F7";
+                },
+                leave3() {
+                    this.styobj2.backgroundColor = "#5E646D";
+                },
+                light4() {
+                    this.styobj1.backgroundColor = "#F7F7F7";
+                },
+                leave4() {
+                    this.styobj1.backgroundColor = "#5E646D";
+                },
+                autoPlay() {
+                    this.message = setInterval(() => {
+                        this.setclock()
+                    }, 3000)
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>

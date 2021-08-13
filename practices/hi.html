@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+{#    <link rel="stylesheet" href='reset1.css'>#}
+{#    <script src="vue.js" type="text/javascript" charset="UTF-8"></script>#}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        window.onload = function () {
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello Vue!'
+                }
+            })
+        }
+
+    </script>
+    <style>
+            .box{
+                width: 100px;
+                height: 100px;
+                background-color: #FF6701;
+        }
+        </style>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+    <div id="rollimg">
+        <img :src="location[id]">
+        <div class="box" :style="styleobj"></div>
+    </div>
+    <script>
+        let roll = new Vue({
+                el: "#rollimg",
+                data: {
+                    id: 0,
+                    location: ["./img/10.jpg","./img/11.jpg","./img/12.jpg"],
+                    message:null,
+                    styleobj:{backgroundColor:"red"}
+                },
+                mounted() {
+				// 执行定时器
+				this.autoPlay();},
+
+                methods: {
+                    setclock(){
+                        if(this.id<=1){
+                            this.id += 1;
+                        }else{this.id = 0;}
+                        this.styleobj.backgroundColor="yellow";
+                    },
+                    autoPlay() {
+					this.message = setInterval(() => {
+						this.setclock()
+					}, 1500)
+				}
+                },
+
+
+
+                    })
+    </script>
+</body>
+</html>
